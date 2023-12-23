@@ -15,3 +15,15 @@ app.get('/.api/notes', (req,res) => {
     const notes = JSON.parse(fs.readFileSync(path.join(__dirname, 'db.json'), 'utf-8'));
     res.json(notes);
 });
+
+app.post('/api/notes', (req, res) => {
+    const newNote = req.body;
+    const notes = JSON.parse(fs.readFileSync(path.join(__dirname, 'db.json'), 'utf-8'));
+
+    newNote.id = notes.length + 1;
+    notes.push(newNote);
+
+    fs.writeFileSync(path.join(__dirname, 'db.json'), JSON.stringlfy(notes));
+
+    res.json(newNote);
+});
