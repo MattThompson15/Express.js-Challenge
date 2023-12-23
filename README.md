@@ -6,7 +6,7 @@ A simple note-taking app built with Express.js.
 
 The Express.js app is a web application that allows users to create, save and delete notes.  It uses Express.js for server-side logic and routing, and it stores notes a JSON file.
 
-##Features
+## Features
 
 * Create new notes with a title and content.
 * Save notes to the server.
