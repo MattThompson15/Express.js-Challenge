@@ -3,13 +3,13 @@ const path = require('path');
 const express = require('express');
 
 const router = express.Router();
-
+// API route to get all saved notes
 router.get('/api/notes', (req, res) => {
     const notes = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json'), 'utf-8'));
 
     res.json(notes);
 });
-
+//API route to save a new note
 router.post('/api/notes', (req, res) => {
     const notes = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json'), 'utf-8'));
 
@@ -24,7 +24,7 @@ router.post('/api/notes', (req, res) => {
 
     res.json(newNote);
 });
-
+//API route to delete a note by ID
 router.delete('/api/notes/:id', (req, res) => {
     let notes = JSON.parse(fs.readFileSync(path.join(__dirname, '../db.json'), 'utf-8'));
 
@@ -36,7 +36,7 @@ router.delete('/api/notes/:id', (req, res) => {
 
     res.json({ success: true});
 });
-
+//Function to generate a unique ID for new notes
 function generateUniqueID() {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
