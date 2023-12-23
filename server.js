@@ -6,12 +6,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-
-app.use(express.json('public'));
-
 app.use(express.static('public'));
 
-app.get('/.api/notes', (req,res) => {
+app.get('/api/notes', (req,res) => {
     const notes = JSON.parse(fs.readFileSync(path.join(__dirname, 'db.json'), 'utf-8'));
     res.json(notes);
 });
@@ -29,13 +26,13 @@ app.post('/api/notes', (req, res) => {
 });
 
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'note.html'));
+    res.sendFile(path.join(__dirname, 'public', 'assets', 'notes.html'));
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'assets', 'index.html'));
 });
 
 app.listen(PORT, () => {
-    console.log('Server is listening on http://localhost:${PORT}');
+    console.log(`Server is listening on http://localhost:${PORT}`);
 });
